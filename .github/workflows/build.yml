@@ -18,3 +18,6 @@ jobs:
         working-directory: Oxygen/sonic3air/build/_emscripten/
         run: |
           docker build -t emscripten_gl .
+      - name: Build
+        run: |
+          docker run --rm -v $(pwd):/src -u $(id -u):$(id -g) --name sonic3air_build emscripten_gl /bin/bash -c "cd /src/Oxygen/sonic3air/build/_emscripten/build; emmake cmake -DCMAKE_BUILD_TYPE=Release ..; emmake cmake --build ."
