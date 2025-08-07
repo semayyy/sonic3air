@@ -11,6 +11,6 @@ jobs:
 
     steps:
       - name: Create Container
-        working-directory: ./Oxygen/sonic3air/build/_emscripten/
+        working-directory: Oxygen/sonic3air/build/_emscripten/
         run: |
           docker build -t emscripten_gl .
