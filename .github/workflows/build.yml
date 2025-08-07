@@ -22,3 +22,11 @@ jobs:
       - name: Build
         run: |
           docker run --rm -v $(pwd):/src -u $(id -u):$(id -g) --name sonic3air_build emscripten_gl /bin/bash -c "cd Oxygen/sonic3air/build/_emscripten/build; emmake cmake -DCMAKE_BUILD_TYPE=Release ..; emmake cmake --build ."
+      - name: Package
+        run: |
+          docker run --rm -v $(pwd):/src -u $(id -u):$(id -g) --name sonic3air_build emscripten_gl /bin/bash -c "cd Oxygen/sonic3air/; python3 /emsdk/upstream/emscripten/tools/file_packager.py build/_emscripten/dist/sonic3air.data --js-output=build/_emscripten/dist/loader.js --preload ___internal@/sonic3air/___internal config.json@/sonic3air/config.json data@/sonic3air/data oxygenproject.json@/sonic3air/oxygenproject.json scripts@/sonic3air/scripts --use-preload-cache"
+      - name: Upload
+        uses: actions/upload-artifact@v4
+        with:
+          name: 3air-web
+          path: Oxygen/sonic3air/build/_emscripten/build/
