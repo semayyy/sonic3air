@@ -1,1 +1,15 @@
-# NOT DONE
+name: Build
+
+on:
+  push:
+    branches: web-revamp
+
+jobs:
+
+  build-web:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Create Container
+        run: |
+          docker build -t ./Oxygen/sonic3air/build/_emscripten/emscripten_gl .
