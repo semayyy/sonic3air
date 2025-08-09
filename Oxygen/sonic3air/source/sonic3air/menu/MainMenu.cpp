@@ -58,7 +58,7 @@ MainMenu::MainMenu(MenuBackground& menuBackground) :
 	#endif
 
 	#if defined(PLATFORM_WEB)
-        mMenuEntries.addEntry("FILE MANAGER", mainmenu::EXIT);
+        mMenuEntries.addEntry("EXIT", mainmenu::EXIT);
 	#endif
 	}
 
@@ -372,4 +372,5 @@ void MainMenu::exitGame()
 	mMenuBackground->startTransition(MenuBackground::Target::TITLE);
 	mState = State::FADE_TO_EXIT;
 }
+
 
