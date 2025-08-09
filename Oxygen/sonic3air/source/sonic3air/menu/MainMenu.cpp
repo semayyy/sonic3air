@@ -53,8 +53,12 @@ MainMenu::MainMenu(MenuBackground& menuBackground) :
 		mMenuEntries.addEntry("EXTRAS",		 mainmenu::EXTRAS);
 		mMenuEntries.addEntry("MODS",		 mainmenu::MODS);
 
-	#if !defined(PLATFORM_ANDROID) && !defined(PLATFORM_IOS)
+	#if !defined(PLATFORM_ANDROID) && !defined(PLATFORM_IOS) && !defined(PLATFORM_WEB)
 		mMenuEntries.addEntry("EXIT",		 mainmenu::EXIT);
+	#endif
+
+	#if defined(PLATFORM_WEB)
+        mMenuEntries.addEntry("FILE MANAGER", mainmenu::EXIT);
 	#endif
 	}
 
@@ -368,3 +372,4 @@ void MainMenu::exitGame()
 	mMenuBackground->startTransition(MenuBackground::Target::TITLE);
 	mState = State::FADE_TO_EXIT;
 }
+
